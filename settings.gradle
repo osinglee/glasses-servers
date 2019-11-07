@@ -1,0 +1,7 @@
+rootProject.name = 'glasses'
+include 'glasses-api'
+include 'glasses-service'
+include 'glasses-serviceImpl'
+include 'glasses-entity'
+include 'glasses-dao'
+
