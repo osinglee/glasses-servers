@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_URL:localhost:3306/${MYSQL_DATABASE:glasses}}?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASS:123456}
+server:
+  port: ${PORT:8090}
