@@ -4,4 +4,6 @@ include 'glasses-service'
 include 'glasses-serviceImpl'
 include 'glasses-entity'
 include 'glasses-dao'
+include 'global'
+include 'utils'
 
