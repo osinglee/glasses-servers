@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @Description : null.java
@@ -42,5 +43,29 @@ public class UserController {
             jsonResult.setMessage("id 不存在");
         }
         return jsonResult;
+    }
+
+    @ApiOperation(value = "添加用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/add")
+    public JSONResult addUser(@Valid @RequestBody User input) {
+        if (userService.updateUser(input)) {
+            return JSONResult.success("添加成功", null);
+        }
+        return JSONResult.error("添加失败");
+    }
+
+    @ApiOperation(value = "删除用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/del")
+    public JSONResult delUser(@Valid @RequestBody DeleteDto input) {
+        if (userService.deleteUser(input.getId())) {
+            return JSONResult.success("删除成功", null);
+        }
+        return JSONResult.error("删除失败");
+    }
+
+    @ApiOperation(value = "全部用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/list")
+    public JSONResult<List<User>> listUser() {
+        return JSONResult.success("获取成功", userService.getList());
     }
 }

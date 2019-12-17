@@ -6,6 +6,8 @@ import come.glasses.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Description : null.java
  * @auther : modan
@@ -24,5 +26,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public boolean updateUser(User input) {
+        return userMapper.insert(input) > 0;
+    }
+
+    @Override
+    public boolean deleteUser(Integer id) {
+        return userMapper.deleteByPrimaryKey(id) > 0;
+    }
+
+    @Override
+    public List<User> getList(){
+        return userMapper.selectAll();
     }
 }

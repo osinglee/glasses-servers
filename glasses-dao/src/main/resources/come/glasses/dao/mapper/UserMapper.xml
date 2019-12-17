@@ -54,7 +54,7 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, name, code, sex, phone, role_id, remarks, password_encrypted, current_token, 
+    select id, name, code, sex, phone, role_id, remarks, password_encrypted, current_token,
     created_at, updated_at
     from user
   </select>

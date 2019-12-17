@@ -2,6 +2,8 @@ package come.glasses.service;
 
 import come.glasses.entity.User;
 
+import java.util.List;
+
 /**
  * @Description : null.java
  * @auther : modan
@@ -10,5 +12,11 @@ import come.glasses.entity.User;
 public interface UserService {
 
     User findById(Integer id);
+
+    boolean updateUser(User user);
+
+    boolean deleteUser(Integer id);
+
+    List<User> getList();
 
 }
