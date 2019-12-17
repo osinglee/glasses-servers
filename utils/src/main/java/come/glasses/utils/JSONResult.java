@@ -14,11 +14,12 @@ public class JSONResult<T> {
         this.data = null;
     }
 
-    public static JSONResult error(String message) {
-        JSONResult jsonResult = new JSONResult();
-        jsonResult.setSuccess(false);
-        jsonResult.setMessage(message);
-        return jsonResult;
+    public static <T> JSONResult<T> success(String message, T data) {
+        return new JSONResult<T>(true, message, data);
+    }
+
+    public static <T> JSONResult<T> error(String message) {
+        return new JSONResult<>(false, message);
     }
 
     public JSONResult(T data) {
