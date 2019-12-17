@@ -1,9 +1,16 @@
 package come.glasses.dao.mapper;
 
-/**
- * @Description : null.java
- * @auther : modan
- * @create : 2019-12-16 15:24
- */
+import come.glasses.entity.User;
+import java.util.List;
+
 public interface UserMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(User record);
+
+    User selectByPrimaryKey(Integer id);
+
+    List<User> selectAll();
+
+    int updateByPrimaryKey(User record);
 }

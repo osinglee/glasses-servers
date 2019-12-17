@@ -1,4 +1,4 @@
-package com.glasses.api.controller;
+package come.glasses.api.controller;
 
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.CrossOrigin;

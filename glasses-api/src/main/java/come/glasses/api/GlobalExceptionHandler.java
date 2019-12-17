@@ -1,4 +1,4 @@
-package com.glasses.api;
+package come.glasses.api;
 
 import come.glasses.utils.JSONResult;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -57,9 +57,6 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ResponseStatus(value = HttpStatus.FORBIDDEN)
     JSONResult handleAccessDeniedException(AccessDeniedException e) {
-        JSONResult jsonResult = new JSONResult();
-        jsonResult.setSuccess(false);
-        jsonResult.setMessage("CM.PERMISSION_ERROR");
-        return jsonResult;
+        return JSONResult.error("CM.PERMISSION_ERROR");
     }
 }

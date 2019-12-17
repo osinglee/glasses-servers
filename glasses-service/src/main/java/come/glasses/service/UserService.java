@@ -1,6 +1,6 @@
 package come.glasses.service;
 
-import come.glasses.entity.UserEntity;
+import come.glasses.entity.User;
 
 /**
  * @Description : null.java
@@ -9,6 +9,6 @@ import come.glasses.entity.UserEntity;
  */
 public interface UserService {
 
-    UserEntity findById(Integer id);
+    User findById(Integer id);
 
 }

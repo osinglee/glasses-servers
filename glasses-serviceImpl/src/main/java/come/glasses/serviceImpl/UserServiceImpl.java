@@ -1,7 +1,7 @@
 package come.glasses.serviceImpl;
 
 import come.glasses.dao.mapper.UserMapper;
-import come.glasses.entity.UserEntity;
+import come.glasses.entity.User;
 import come.glasses.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity findById(Integer id) {
-        return new UserEntity();
+    public User findById(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
     }
 }

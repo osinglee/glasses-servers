@@ -14,6 +14,13 @@ public class JSONResult<T> {
         this.data = null;
     }
 
+    public static JSONResult error(String message) {
+        JSONResult jsonResult = new JSONResult();
+        jsonResult.setSuccess(false);
+        jsonResult.setMessage(message);
+        return jsonResult;
+    }
+
     public JSONResult(T data) {
         this.data = data;
     }

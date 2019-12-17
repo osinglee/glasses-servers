@@ -1,3 +1,17 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        //添加maven仓库
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        // mybatis-generator 插件路径
+        classpath "gradle.plugin.com.arenagod.gradle:mybatis-generator-plugin:1.4"
+    }
+}
+
 plugins {
     id 'java'
 }
@@ -11,6 +25,8 @@ repositories {
     mavenCentral()
 }
 
+apply plugin: "com.arenagod.gradle.MybatisGenerator"
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
@@ -19,4 +35,13 @@ dependencies {
     compile 'org.springframework:spring-context:5.0.4.RELEASE'
 
     compile project(':glasses-entity')
+}
+
+configurations {
+    mybatisGenerator
+}
+
+mybatisGenerator {
+    verbose = true
+    configFile = 'src/main/resources/come/glasses/dao/generatorConfig.xml'
 }

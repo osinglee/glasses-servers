@@ -1,11 +1,10 @@
-package com.glasses.api;
+package come.glasses.api;
 import come.glasses.dao.DaoConfiguration;
 import come.glasses.global.GlobalConfiguration;
 import come.glasses.utils.UtilsConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -28,7 +27,6 @@ import java.util.function.Predicate;
  */
 @SpringBootApplication(scanBasePackages = {"come.glasses"})
 @Import({UtilsConfiguration.class, GlobalConfiguration.class, DaoConfiguration.class})
-@Configuration
 @EnableSwagger2
 public class GlassesApplication {
     public static void main(String[] args) {

@@ -2,7 +2,7 @@ package come.glasses.serviceImpl.user;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
-import come.glasses.entity.UserEntity;
+import come.glasses.entity.User;
 import come.glasses.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -49,7 +49,7 @@ public class HeaderTokenWebFilter extends OncePerRequestFilter {
             return;
         }
         // 通过数据库验证
-        UserEntity user = userService.findById(userId);
+        User user = userService.findById(userId);
         if (user == null) {
             filterChain.doFilter(request, response);
             return;

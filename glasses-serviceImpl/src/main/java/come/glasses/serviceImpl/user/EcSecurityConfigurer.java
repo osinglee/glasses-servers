@@ -23,7 +23,7 @@ public class EcSecurityConfigurer {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/auth/login").permitAll()
                 .and();
     }
 }

@@ -1,6 +1,6 @@
-package com.glasses.api.controller;
+package come.glasses.api.controller;
 
-import come.glasses.entity.UserEntity;
+import come.glasses.entity.User;
 import come.glasses.entity.dto.DeleteDto;
 import come.glasses.service.UserService;
 import come.glasses.utils.JSONResult;
@@ -32,9 +32,9 @@ public class UserController {
 
     @ApiOperation(value = "根据ID获取用户", notes = "根据ID获取用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(value = "/id", method = RequestMethod.GET)
-    public JSONResult<UserEntity> getUser(@Valid DeleteDto deleteDto) {
-        UserEntity userEntity = userService.findById(deleteDto.getId());
-        JSONResult<UserEntity> jsonResult = new JSONResult<>();
+    public JSONResult<User> getUser(@Valid DeleteDto deleteDto) {
+        User userEntity = userService.findById(deleteDto.getId());
+        JSONResult<User> jsonResult = new JSONResult<>();
         if (userEntity != null) {
             jsonResult.setData(userEntity);
         } else {

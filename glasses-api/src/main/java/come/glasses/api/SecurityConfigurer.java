@@ -1,4 +1,4 @@
-package com.glasses.api;
+package come.glasses.api;
 
 import come.glasses.serviceImpl.user.EcSecurityConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
