@@ -1,6 +1,8 @@
 package come.glasses.dao.mapper;
 
 import come.glasses.entity.User;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface UserMapper {
@@ -13,4 +15,6 @@ public interface UserMapper {
     List<User> selectAll();
 
     int updateByPrimaryKey(User record);
+
+    User selectByLoginStr(@Param("code") String code);
 }

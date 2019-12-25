@@ -10,3 +10,10 @@ spring:
 
 server:
   port: ${PORT:8090}
+
+# 自定义jwt key
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mySecret #JWT加解密使用的密钥
+  expiration: 86400000 #JWT的超期限时间(24 * 60 * 60 * 1000)
+  tokenHead: Bearer  #JWT负载中拿到开头

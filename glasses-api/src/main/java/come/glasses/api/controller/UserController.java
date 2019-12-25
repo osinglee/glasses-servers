@@ -4,6 +4,7 @@ import come.glasses.entity.User;
 import come.glasses.entity.dto.DeleteDto;
 import come.glasses.service.UserService;
 import come.glasses.utils.JSONResult;
+import come.glasses.utils.JwtTokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,7 @@ public class UserController {
     @ApiOperation(value = "添加用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/add")
     public JSONResult addUser(@Valid @RequestBody User input) {
+        input.setPasswordEncrypted(JwtTokenUtil.codeFromPassword(input.getCode()));
         if (userService.updateUser(input)) {
             return JSONResult.success("添加成功", null);
         }
