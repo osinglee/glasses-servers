@@ -4,8 +4,12 @@ import come.glasses.dao.mapper.UserMapper;
 import come.glasses.entity.User;
 import come.glasses.entity.dto.LoginDto;
 import come.glasses.service.AuthLoginService;
+import come.glasses.serviceImpl.user.AuthenticateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import sun.plugin.liveconnect.SecurityContextHelper;
 
 /**
  * @Description : null.java
@@ -25,5 +29,18 @@ public class AuthServiceImpl implements AuthLoginService {
     @Override
     public User login(LoginDto input) {
         return userMapper.selectByLoginStr(input.getUser());
+    }
+
+    /**
+     * 获取token用户
+     *
+     * @return
+     */
+    public static User getCurrentAuth() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AuthenticateServiceImpl)) {
+            return null;
+        }
+        return ((AuthenticateServiceImpl) authentication).getPrincipal();
     }
 }

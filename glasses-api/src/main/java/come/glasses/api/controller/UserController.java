@@ -23,7 +23,7 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping(value = "/user")
 @Api(value = "dts: 用户模块")
-public class UserController {
+public class UserController extends BaseController {
 
     private final UserService userService;
 
@@ -35,6 +35,8 @@ public class UserController {
     @ApiOperation(value = "根据ID获取用户", notes = "根据ID获取用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(value = "/id", method = RequestMethod.GET)
     public JSONResult<User> getUser(@Valid DeleteDto deleteDto) {
+        User user = currentUser();
+        System.out.println(user.getName());
         User userEntity = userService.findById(deleteDto.getId());
         JSONResult<User> jsonResult = new JSONResult<>();
         if (userEntity != null) {
