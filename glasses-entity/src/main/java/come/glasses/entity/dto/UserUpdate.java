@@ -1,9 +1,16 @@
-package come.glasses.entity;
+package come.glasses.entity.dto;
+
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-public class User {
+/**
+ * @Description : null.java
+ * @auther : modan
+ * @create : 2020-03-26 17:39
+ */
+public class UserUpdate {
+    @NotNull(message = "id不能为空")
     private Integer id;
 
     @NotNull(message = "name不能为空")
@@ -27,24 +34,6 @@ public class User {
     private Date createdAt;
 
     private Date updatedAt;
-
-    public User(Integer id, String name, String code, Byte sex, String phone, Integer roleId, String remarks, String passwordEncrypted, String currentToken, Date createdAt, Date updatedAt) {
-        this.id = id;
-        this.name = name;
-        this.code = code;
-        this.sex = sex;
-        this.phone = phone;
-        this.roleId = roleId;
-        this.remarks = remarks;
-        this.passwordEncrypted = passwordEncrypted;
-        this.currentToken = currentToken;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-    public User() {
-        super();
-    }
 
     public Integer getId() {
         return id;

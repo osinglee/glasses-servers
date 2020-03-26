@@ -2,6 +2,8 @@ package come.glasses.api.controller;
 
 import come.glasses.entity.User;
 import come.glasses.entity.dto.DeleteDto;
+import come.glasses.entity.dto.UserList;
+import come.glasses.entity.dto.UserUpdate;
 import come.glasses.service.UserService;
 import come.glasses.utils.JSONResult;
 import come.glasses.utils.JwtTokenUtil;
@@ -58,6 +60,16 @@ public class UserController extends BaseController {
         return JSONResult.error("添加失败");
     }
 
+    @ApiOperation(value = "更新用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/update")
+    public JSONResult updateUser(@Valid @RequestBody UserUpdate input) {
+        input.setPasswordEncrypted(JwtTokenUtil.codeFromPassword(input.getCode()));
+        if (userService.updateUserInput(input)) {
+            return JSONResult.success("更新成功", null);
+        }
+        return JSONResult.error("更新失败");
+    }
+
     @ApiOperation(value = "删除用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/del")
     public JSONResult delUser(@Valid @RequestBody DeleteDto input) {
@@ -69,7 +81,10 @@ public class UserController extends BaseController {
 
     @ApiOperation(value = "全部用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @GetMapping(value = "/list")
-    public JSONResult<List<User>> listUser() {
-        return JSONResult.success("获取成功", userService.getList());
+    public JSONResult<List<User>> listUser(@Valid UserList input) {
+        JSONResult<List<User>> jsonResult = new JSONResult<>();
+        jsonResult.setData(userService.getList(input));
+        jsonResult.setTotal(userService.count(input));
+        return jsonResult;
     }
 }

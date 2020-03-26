@@ -2,6 +2,8 @@ package come.glasses.serviceImpl;
 
 import come.glasses.dao.mapper.UserMapper;
 import come.glasses.entity.User;
+import come.glasses.entity.dto.UserList;
+import come.glasses.entity.dto.UserUpdate;
 import come.glasses.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,12 +36,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean updateUserInput(UserUpdate user) {
+        return userMapper.updateByPrimaryKey(user) > 0;
+    }
+
+    @Override
     public boolean deleteUser(Integer id) {
         return userMapper.deleteByPrimaryKey(id) > 0;
     }
 
     @Override
-    public List<User> getList(){
-        return userMapper.selectAll();
+    public List<User> getList(UserList input) {
+        return userMapper.selectAll(input);
+    }
+
+    @Override
+    public Integer count(UserList input) {
+        return userMapper.countOperationLogs(input);
     }
 }

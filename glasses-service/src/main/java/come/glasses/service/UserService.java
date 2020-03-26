@@ -1,6 +1,8 @@
 package come.glasses.service;
 
 import come.glasses.entity.User;
+import come.glasses.entity.dto.UserList;
+import come.glasses.entity.dto.UserUpdate;
 
 import java.util.List;
 
@@ -15,8 +17,12 @@ public interface UserService {
 
     boolean updateUser(User user);
 
+    boolean updateUserInput(UserUpdate user);
+
     boolean deleteUser(Integer id);
 
-    List<User> getList();
+    List<User> getList(UserList input);
+
+    Integer count(UserList input);
 
 }

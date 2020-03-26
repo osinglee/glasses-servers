@@ -56,12 +56,16 @@
     <select id="selectAll" resultMap="BaseResultMap">
     select id, name, code, sex, phone, role_id, remarks, password_encrypted, current_token,
     created_at, updated_at
-    from user
+    from user limit #{input.offset}, #{input.pageSize}
   </select>
 
     <select id="selectByLoginStr" resultMap="BaseResultMap">
       select id, name, code, sex, phone, role_id, remarks, password_encrypted, current_token,
       created_at, updated_at
       from user where code = #{code,jdbcType=VARCHAR}
+    </select>
+
+    <select id="countOperationLogs" resultType="java.lang.Integer">
+        select count(*) from user
     </select>
 </mapper>

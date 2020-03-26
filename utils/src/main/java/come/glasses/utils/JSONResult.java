@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class JSONResult<T> {
     private String message;
     private Boolean success;
+    private int total;
     private T data;
 
     public JSONResult() {
@@ -59,5 +60,13 @@ public class JSONResult<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 }
