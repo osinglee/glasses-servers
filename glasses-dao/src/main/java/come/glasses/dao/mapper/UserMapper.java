@@ -14,7 +14,7 @@ public interface UserMapper {
 
     User selectByPrimaryKey(Integer id);
 
-    List<User> selectAll(UserList input);
+    List<User> selectAll(@Param("input") UserList input);
 
     int updateByPrimaryKey(UserUpdate record);
 

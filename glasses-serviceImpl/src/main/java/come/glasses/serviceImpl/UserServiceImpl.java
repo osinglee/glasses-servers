@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getList(UserList input) {
+        input.setOffset((input.getPage() - 1) * input.getPageSize());
         return userMapper.selectAll(input);
     }
 

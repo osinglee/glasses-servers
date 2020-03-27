@@ -26,12 +26,10 @@
         </selectKey>
         insert into user (name, code, sex,
         phone, role_id, remarks,
-        password_encrypted, current_token, created_at,
-        updated_at)
+        password_encrypted, current_token)
         values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT},
         #{phone,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR},
-        #{passwordEncrypted,jdbcType=VARCHAR}, #{currentToken,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP},
-        #{updatedAt,jdbcType=TIMESTAMP})
+        #{passwordEncrypted,jdbcType=VARCHAR}, #{currentToken,jdbcType=VARCHAR})
     </insert>
     <update id="updateByPrimaryKey" parameterType="come.glasses.entity.User">
     update user
@@ -42,9 +40,7 @@
       role_id = #{roleId,jdbcType=INTEGER},
       remarks = #{remarks,jdbcType=VARCHAR},
       password_encrypted = #{passwordEncrypted,jdbcType=VARCHAR},
-      current_token = #{currentToken,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+      current_token = #{currentToken,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
