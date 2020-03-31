@@ -15,6 +15,10 @@ public class JSONResult<T> {
         this.data = null;
     }
 
+    public static <T> JSONResult<T> success(String message) {
+        return new JSONResult<T>(true, message, null);
+    }
+
     public static <T> JSONResult<T> success(String message, T data) {
         return new JSONResult<T>(true, message, data);
     }

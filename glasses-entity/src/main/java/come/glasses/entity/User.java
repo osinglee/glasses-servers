@@ -1,6 +1,9 @@
 package come.glasses.entity;
 
+import come.glasses.utils.RegexpPattern;
+
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 public class User {
@@ -14,6 +17,8 @@ public class User {
 
     private Byte sex;
 
+    @Pattern(regexp = RegexpPattern.PHONE,message = "手机号码格式错误")
+    @NotNull(message = "手机号码不能为空")
     private String phone;
 
     private Integer roleId;
