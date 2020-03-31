@@ -1,6 +1,7 @@
 package come.glasses.entity;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class User {
@@ -12,6 +13,7 @@ public class User {
     @NotNull(message = "code不能为空")
     private String code;
 
+    @Size(max = 1, message = "0和1之间")
     private Byte sex;
 
     private String phone;

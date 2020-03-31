@@ -52,7 +52,11 @@
     <select id="selectAll" resultMap="BaseResultMap">
     select id, name, code, sex, phone, role_id, remarks, password_encrypted, current_token,
     created_at, updated_at
-    from user limit #{input.offset}, #{input.pageSize}
+    from user u where
+    <if test="input.name != null">
+        u.name like concat(#{input.name}, '%')
+    </if>
+    limit #{input.offset}, #{input.pageSize}
   </select>
 
     <select id="selectByLoginStr" resultMap="BaseResultMap">
