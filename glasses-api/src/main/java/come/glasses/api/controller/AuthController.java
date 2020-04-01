@@ -38,7 +38,7 @@ public class AuthController {
     @ApiOperation(value = "登录", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/login")
     public JSONResult<User> addUser(@Valid @RequestBody LoginDto input) {
-        User user = authLoginService.login(input);
+        User user = authLoginService.login(input.getUser());
         if (user == null) {
             return JSONResult.error("用户名不存在");
         } else if (!JwtTokenUtil.isEqualsPassword(input.getPassword(), user.getPasswordEncrypted())) {
@@ -58,6 +58,8 @@ public class AuthController {
         User user = userService.findById(input.getId());
         if (user == null) {
             return JSONResult.error("用户不存在");
+        } else if (JwtTokenUtil.isEqualsPassword(input.getNewPass(), user.getPasswordEncrypted())) {
+            return JSONResult.error("新密码与旧密码相同");
         } else if (!JwtTokenUtil.isEqualsPassword(input.getPass(), user.getPasswordEncrypted())) {
             return JSONResult.error("用户密码错误");
         } else {
@@ -68,6 +70,5 @@ public class AuthController {
             return JSONResult.error("修改失败");
         }
     }
-
 
 }

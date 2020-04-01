@@ -4,6 +4,7 @@ import come.glasses.entity.User;
 import come.glasses.entity.dto.DeleteDto;
 import come.glasses.entity.dto.UserList;
 import come.glasses.entity.dto.UserUpdate;
+import come.glasses.service.AuthLoginService;
 import come.glasses.service.UserService;
 import come.glasses.utils.JSONResult;
 import come.glasses.utils.JwtTokenUtil;
@@ -29,9 +30,12 @@ public class UserController extends BaseController {
 
     private final UserService userService;
 
+    private final AuthLoginService authLoginService;
+
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, AuthLoginService authLoginService) {
         this.userService = userService;
+        this.authLoginService = authLoginService;
     }
 
     @ApiOperation(value = "根据ID获取用户", notes = "根据ID获取用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -53,6 +57,10 @@ public class UserController extends BaseController {
     @ApiOperation(value = "添加用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/add")
     public JSONResult addUser(@Valid @RequestBody User input) {
+        User user = authLoginService.login(input.getCode());
+        if (user != null) {
+            return JSONResult.error("改用户已存在");
+        }
         input.setPasswordEncrypted(JwtTokenUtil.codeFromPassword(input.getCode()));
         if (userService.updateUser(input)) {
             return JSONResult.success("添加成功", null);
