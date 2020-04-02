@@ -7,7 +7,6 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT '姓名.',
-  `code` varchar(255) NOT NULL COMMENT '用户工号.',
   `sex` tinyint(2) UNSIGNED COMMENT '性别.',
   `phone` varchar(20) NOT NULL COMMENT '电话.',
   `role_id` int(11) NOT null COMMENT '用户角色',

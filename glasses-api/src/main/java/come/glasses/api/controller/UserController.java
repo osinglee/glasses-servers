@@ -57,11 +57,11 @@ public class UserController extends BaseController {
     @ApiOperation(value = "添加用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/add")
     public JSONResult addUser(@Valid @RequestBody User input) {
-        User user = authLoginService.login(input.getCode());
+        User user = authLoginService.login(input.getPhone());
         if (user != null) {
             return JSONResult.error("改用户已存在");
         }
-        input.setPasswordEncrypted(JwtTokenUtil.codeFromPassword(input.getCode()));
+        input.setPasswordEncrypted(JwtTokenUtil.codeFromPassword(input.getPhone()));
         if (userService.updateUser(input)) {
             return JSONResult.success("添加成功", null);
         }
@@ -71,7 +71,6 @@ public class UserController extends BaseController {
     @ApiOperation(value = "更新用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/update")
     public JSONResult updateUser(@Valid @RequestBody UserUpdate input) {
-        input.setPasswordEncrypted(JwtTokenUtil.codeFromPassword(input.getCode()));
         if (userService.updateUserInput(input)) {
             return JSONResult.success("更新成功", null);
         }

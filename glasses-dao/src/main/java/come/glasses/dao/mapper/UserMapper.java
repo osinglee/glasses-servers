@@ -18,7 +18,7 @@ public interface UserMapper {
 
     int updateByPrimaryKey(UserUpdate record);
 
-    User selectByLoginStr(@Param("code") String code);
+    User selectByLoginStr(@Param("phone") String phone);
 
     Integer countOperationLogs(UserList record);
 }

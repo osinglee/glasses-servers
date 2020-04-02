@@ -5,7 +5,6 @@
         <constructor>
             <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
             <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <arg column="sex" javaType="java.lang.Byte" jdbcType="TINYINT"/>
             <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <arg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
@@ -24,17 +23,16 @@
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into user (name, code, sex,
+        insert into user (name, sex,
         phone, role_id, remarks,
         password_encrypted, current_token)
-        values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT},
+        values (#{name,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT},
         #{phone,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR},
         #{passwordEncrypted,jdbcType=VARCHAR}, #{currentToken,jdbcType=VARCHAR})
     </insert>
     <update id="updateByPrimaryKey" parameterType="come.glasses.entity.User">
     update user
     set name = #{name,jdbcType=VARCHAR},
-      code = #{code,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=TINYINT},
       phone = #{phone,jdbcType=VARCHAR},
       role_id = #{roleId,jdbcType=INTEGER},
@@ -44,13 +42,13 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, name, code, sex, phone, role_id, remarks, password_encrypted, current_token, 
+    select id, name, sex, phone, role_id, remarks, password_encrypted, current_token,
     created_at, updated_at
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
     <select id="selectAll" resultMap="BaseResultMap">
-    select id, name, code, sex, phone, role_id, remarks, password_encrypted, current_token,
+    select id, name, sex, phone, role_id, remarks, password_encrypted, current_token,
     created_at, updated_at
     from user u where
     <if test="input.name != null">
@@ -60,9 +58,9 @@
   </select>
 
     <select id="selectByLoginStr" resultMap="BaseResultMap">
-      select id, name, code, sex, phone, role_id, remarks, password_encrypted, current_token,
+      select id, name, sex, phone, role_id, remarks, password_encrypted, current_token,
       created_at, updated_at
-      from user where code = #{code,jdbcType=VARCHAR}
+      from user where phone = #{phone,jdbcType=VARCHAR}
     </select>
 
     <select id="countOperationLogs" resultType="java.lang.Integer">

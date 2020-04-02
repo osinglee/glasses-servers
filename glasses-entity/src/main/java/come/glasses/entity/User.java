@@ -1,5 +1,7 @@
 package come.glasses.entity;
 
+import come.glasses.utils.RegexpPattern;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -11,10 +13,6 @@ public class User {
     @NotNull(message = "name不能为空")
     private String name;
 
-    @NotNull(message = "code不能为空")
-    private String code;
-
-    @Size(max = 1, message = "0和1之间")
     private Byte sex;
 
     @Pattern(regexp = RegexpPattern.PHONE,message = "手机号码格式错误")
@@ -33,10 +31,9 @@ public class User {
 
     private Date updatedAt;
 
-    public User(Integer id, String name, String code, Byte sex, String phone, Integer roleId, String remarks, String passwordEncrypted, String currentToken, Date createdAt, Date updatedAt) {
+    public User(Integer id, String name, Byte sex, String phone, Integer roleId, String remarks, String passwordEncrypted, String currentToken, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
-        this.code = code;
         this.sex = sex;
         this.phone = phone;
         this.roleId = roleId;
@@ -65,14 +62,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
     }
 
     public Byte getSex() {

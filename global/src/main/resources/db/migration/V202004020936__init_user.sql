@@ -1,0 +1,1 @@
+INSERT INTO `glasses`.`user`(`id`, `name`, `sex`, `phone`, `role_id`, `remarks`, `password_encrypted`, `current_token`, `created_at`, `updated_at`) VALUES (1, '管理员', 1, '18888888888', 1, NULL, '9d21b40b0149659559c1e93dc62f52ceb1cc298df5c18283467e1ed97f6957c1', NULL, '2020-04-02 09:35:11', '2020-04-02 09:35:11');
