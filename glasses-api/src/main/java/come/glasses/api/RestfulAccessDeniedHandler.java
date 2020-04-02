@@ -1,6 +1,5 @@
 package come.glasses.api;
 
-import cn.hutool.json.JSONUtil;
 import come.glasses.utils.JSONResult;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -23,7 +22,7 @@ public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
                        AccessDeniedException e) throws IOException, ServletException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        response.getWriter().println(JSONUtil.parse(JSONResult.error("没有相关权限" + e.getMessage())));
+        response.getWriter().println(JSONResult.error("没有相关权限" + e.getMessage()));
         response.getWriter().flush();
     }
 }

@@ -27,8 +27,8 @@ public class AuthServiceImpl implements AuthLoginService {
     }
 
     @Override
-    public User login(LoginDto input) {
-        return userMapper.selectByLoginStr(input.getUser());
+    public User login(String code) {
+        return userMapper.selectByLoginStr(code);
     }
 
     /**

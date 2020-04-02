@@ -10,5 +10,5 @@ import come.glasses.entity.dto.LoginDto;
  */
 public interface AuthLoginService {
 
-    User login(LoginDto loginDto);
+    User login(String code);
 }

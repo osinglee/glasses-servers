@@ -1,6 +1,7 @@
 package come.glasses.entity;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -16,6 +17,8 @@ public class User {
     @Size(max = 1, message = "0和1之间")
     private Byte sex;
 
+    @Pattern(regexp = RegexpPattern.PHONE,message = "手机号码格式错误")
+    @NotNull(message = "手机号码不能为空")
     private String phone;
 
     private Integer roleId;
