@@ -25,7 +25,7 @@ CREATE TABLE `consumption` (
 CREATE TABLE `stock` (
     `id` int(11) not null AUTO_INCREMENT,
     `brand` int(11) not null comment '品牌',
-    `type` int(11) not null comment '1-镜架，2-镜片，3-隐形，4-药水，5-太阳镜，5-老花镜',
+    `type` int(11) not null comment '1-镜架，2-镜片，3-隐形，4-药水，5-太阳镜，6-老花镜, 7-其他',
     `model` varchar(100) not null comment '型号',
     `number` int(11) not null comment '数量',
     `created_at` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

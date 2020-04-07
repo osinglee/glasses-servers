@@ -20,7 +20,7 @@ public class User {
 
     private Integer roleId;
 
-    private Integer roleName;
+    private String roleName;
 
     private String remarks;
 
