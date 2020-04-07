@@ -4,7 +4,6 @@ import come.glasses.utils.RegexpPattern;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class User {
@@ -21,6 +20,8 @@ public class User {
 
     private Integer roleId;
 
+    private Integer roleName;
+
     private String remarks;
 
     private String passwordEncrypted;
@@ -30,19 +31,6 @@ public class User {
     private Date createdAt;
 
     private Date updatedAt;
-
-    public User(Integer id, String name, Byte sex, String phone, Integer roleId, String remarks, String passwordEncrypted, String currentToken, Date createdAt, Date updatedAt) {
-        this.id = id;
-        this.name = name;
-        this.sex = sex;
-        this.phone = phone;
-        this.roleId = roleId;
-        this.remarks = remarks;
-        this.passwordEncrypted = passwordEncrypted;
-        this.currentToken = currentToken;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
 
     public User() {
         super();
@@ -126,5 +114,13 @@ public class User {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Integer getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(Integer roleName) {
+        this.roleName = roleName;
     }
 }
