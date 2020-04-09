@@ -9,6 +9,7 @@
         <result property="roleId" column="role_id"/>
         <result property="roleName" column="role_name"/>
         <result property="remarks" column="remarks"/>
+        <result property="permission" column="permission"/>
         <result property="passwordEncrypted" column="password_encrypted"/>
         <result property="currentToken" column="current_token"/>
         <result property="createdAt" column="created_at"/>
@@ -57,7 +58,7 @@
     </select>
 
     <select id="selectByLoginStr" resultMap="BaseResultMap">
-      select u.*, r.name as role_name
+      select u.*, r.name as role_name, r.permission as permission
     from user u
     left join role r on r.id = u.role_id
     where phone = #{phone,jdbcType=VARCHAR}

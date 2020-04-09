@@ -1,3 +1,5 @@
+
+DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
     `id` int(11) not null AUTO_INCREMENT,
     `name` varchar(100) not null comment '姓名',
@@ -11,6 +13,7 @@ CREATE TABLE `member` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='会员管理表';
 
+DROP TABLE IF EXISTS `consumption`;
 CREATE TABLE `consumption` (
     `id` int(11) not null AUTO_INCREMENT,
     `trade_id` int(11) not null comment '商品名称, 库存获取',
@@ -22,6 +25,7 @@ CREATE TABLE `consumption` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='商品销售表';
 
+DROP TABLE IF EXISTS `stock`;
 CREATE TABLE `stock` (
     `id` int(11) not null AUTO_INCREMENT,
     `brand` int(11) not null comment '品牌',
@@ -33,14 +37,16 @@ CREATE TABLE `stock` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='库存表';
 
+DROP TABLE IF EXISTS `brand`;
 CREATE TABLE `brand` (
     `id` int(11) not null AUTO_INCREMENT,
-    `name` int(11) not null comment '品牌名称',
+    `name` varchar(100) not null comment '品牌名称',
     `created_at` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='库存品牌表';
 
+DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
     `id` int(11) not null AUTO_INCREMENT,
     `name` varchar(100) not null comment '角色名称',

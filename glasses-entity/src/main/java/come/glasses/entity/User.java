@@ -22,6 +22,8 @@ public class User {
 
     private String roleName;
 
+    private String permission;
+
     private String remarks;
 
     private String passwordEncrypted;
@@ -116,11 +118,19 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    public Integer getRoleName() {
+    public String getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(Integer roleName) {
+    public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 }
