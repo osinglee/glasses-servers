@@ -10,17 +10,16 @@ import java.util.Date;
  * @create : 2020-03-26 17:39
  */
 public class UserUpdate {
-    @NotNull(message = "id不能为空")
     private Integer id;
 
-    @NotNull(message = "name不能为空")
+    @NotNull(message = "姓名不能为空")
     private String name;
 
-    @NotNull(message = "code不能为空")
     private String code;
 
     private Byte sex;
 
+    @NotNull(message = "手机号码不能为空")
     private String phone;
 
     private Integer roleId;
