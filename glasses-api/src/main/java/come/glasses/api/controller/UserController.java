@@ -71,6 +71,7 @@ public class UserController extends BaseController {
     @ApiOperation(value = "更新用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/update")
     public JSONResult updateUser(@Valid @RequestBody UserUpdate input) {
+        input.setPasswordEncrypted(JwtTokenUtil.codeFromPassword(input.getPhone()));
         if (userService.updateUserInput(input)) {
             return JSONResult.success("更新成功", null);
         }
