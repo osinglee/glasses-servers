@@ -20,5 +20,5 @@ public interface UserMapper {
 
     User selectByLoginStr(@Param("phone") String phone);
 
-    Integer countOperationLogs(UserList record);
+    Integer countOperationLogs(@Param("input") UserList input);
 }

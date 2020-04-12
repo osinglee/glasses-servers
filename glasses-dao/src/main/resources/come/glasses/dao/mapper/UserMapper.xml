@@ -48,12 +48,15 @@
     where u.id = #{id,jdbcType=INTEGER}
   </select>
     <select id="selectAll" resultMap="BaseResultMap">
-        select id, name, sex, phone, role_id, remarks, password_encrypted, current_token,
-        created_at, updated_at
-        from user u where
-        <if test="input.name != null">
-            u.name like concat(#{input.name}, '%')
-        </if>
+        select u.id, u.name, u.sex, u.phone, u.role_id, u.remarks, u.password_encrypted, u.current_token,
+        u.created_at, u.updated_at, r.name as role_name, r.permission as permission
+        from user u
+        left join role r on r.id = u.role_id
+        <where>
+            <if test="input.name != null">
+                concat(u.name,u.phone) LIKE concat('%', #{input.name},'%')
+            </if>
+        </where>
         limit #{input.offset}, #{input.pageSize}
     </select>
 
@@ -66,5 +69,10 @@
 
     <select id="countOperationLogs" resultType="java.lang.Integer">
         select count(*) from user
+        <where>
+            <if test="input.name != null">
+                concat(name,phone) LIKE concat('%', #{input.name},'%')
+            </if>
+        </where>
     </select>
 </mapper>

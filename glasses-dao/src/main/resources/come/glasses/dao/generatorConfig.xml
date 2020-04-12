@@ -63,7 +63,7 @@
                 所以，如果 javaClientGenerator配置中配置了需要生成XML的话，这个元素就必须配置
             targetPackage/targetProject:同javaModelGenerator
          -->
-        <sqlMapGenerator targetPackage="come/glasses/dao/mapper" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="come/glasses/dao/mapper" targetProject="./src/main/resources">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
@@ -78,7 +78,7 @@
             注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
         -->
         <javaClientGenerator targetPackage="come.glasses.dao.mapper" type="XMLMAPPER"
-                             targetProject="src/main/java">
+                             targetProject="./src/main/java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
@@ -92,7 +92,7 @@
         <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
         <!--</table>-->
 
-        <table tableName="user">
+        <table tableName="stock">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
 

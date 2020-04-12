@@ -42,7 +42,7 @@ public class BrandController {
 
     @ApiOperation(value = "品牌删除", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/del")
-    public JSONResult<List<BrandEntity>> brandDel(@Valid @RequestBody DeleteDto input) {
+    public JSONResult brandDel(@Valid @RequestBody DeleteDto input) {
         if (brandService.delKeys(input.getId())) {
             return JSONResult.success("删除成功");
         }
@@ -51,11 +51,11 @@ public class BrandController {
 
     @ApiOperation(value = "品牌新增", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/insert")
-    public JSONResult<List<BrandEntity>> brandInsert(@Valid @RequestBody BrandDTO input) {
+    public JSONResult brandInsert(@Valid @RequestBody BrandDTO input) {
         BrandEntity brandEntity = BeanMapper.map(input, BrandEntity.class);
         if (brandService.insert(brandEntity)) {
-            return JSONResult.success("删除成功");
+            return JSONResult.success("新增成功");
         }
-        return JSONResult.error("删除失败");
+        return JSONResult.error("新增失败");
     }
 }

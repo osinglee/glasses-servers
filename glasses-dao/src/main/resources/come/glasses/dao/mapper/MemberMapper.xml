@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="come.glasses.dao.mapper.MemberMapper">
+    <resultMap id="BaseResultMap" type="come.glasses.entity.dto.member.MemberList">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="birthday" column="birthday"/>
+        <result property="amountTotal" column="amount_total"/>
+        <result property="address" column="address"/>
+        <result property="createId" column="create_id"/>
+        <result property="createdName" column="created_name"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+    <delete id="deleteParamsKey" parameterType="java.lang.Integer">
+    delete from member
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="come.glasses.entity.User">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into member (name, birthday,
+        phone, address, create_id)
+        values (#{name,jdbcType=VARCHAR}, #{birthday,jdbcType=TINYINT},
+        #{phone,jdbcType=VARCHAR}, #{address,jdbcType=INTEGER},
+        #{createId,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="come.glasses.entity.User">
+    update member
+    set name = #{name,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TINYINT},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select m.*, u.name as created_name
+    from member m
+    left join user u on u.id = m.create_id
+    where u.id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectList" resultMap="BaseResultMap">
+        select m.*, u.name as created_name
+        from member m
+        left join user u on u.id = m.create_id
+        <where>
+            <if test="keyword != null">
+                concat(m.name,m.phone) LIKE concat('%', #{keyword},'%')
+            </if>
+        </where>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="countOperationLogs" resultType="java.lang.Integer">
+        select count(*) from member
+        <where>
+            <if test="input.name != null">
+                concat(name,phone) LIKE concat('%', #{input.name},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

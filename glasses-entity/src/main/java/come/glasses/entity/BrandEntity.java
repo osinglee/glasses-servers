@@ -2,6 +2,8 @@ package come.glasses.entity;
 
 import io.swagger.models.auth.In;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @Description : null.java
  * @auther : modan
@@ -12,6 +14,7 @@ public class BrandEntity {
 
     private Integer id;
 
+    @NotNull(message = "名称不能为空")
     private String name;
 
     public Integer getId() {
