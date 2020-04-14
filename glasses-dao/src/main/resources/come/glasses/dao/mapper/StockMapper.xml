@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="come.glasses.dao.mapper.StockMapper">
-  <resultMap id="BaseResultMap" type="come.glasses.entity.StockEntity">
+  <resultMap id="BaseResultMap" type="come.glasses.entity.dto.stock.StockListDto">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="brand" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="brand_name" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="model" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="number" javaType="java.lang.Integer" jdbcType="INTEGER" />

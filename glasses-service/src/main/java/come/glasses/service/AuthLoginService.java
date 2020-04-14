@@ -1,7 +1,6 @@
 package come.glasses.service;
 
-import come.glasses.entity.User;
-import come.glasses.entity.dto.LoginDto;
+import come.glasses.entity.UserEntity;
 
 /**
  * @Description : null.java
@@ -10,5 +9,5 @@ import come.glasses.entity.dto.LoginDto;
  */
 public interface AuthLoginService {
 
-    User login(String phone);
+    UserEntity login(String phone);
 }

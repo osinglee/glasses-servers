@@ -12,6 +12,8 @@ public class StockListDto {
 
     private Integer brand;
 
+    private Integer brandName;
+
     private Integer type;
 
     private String model;
@@ -22,9 +24,10 @@ public class StockListDto {
 
     private Date updatedAt;
 
-    public StockListDto(Integer id, Integer brand, Integer type, String model, Integer number, Date createdAt, Date updatedAt) {
+    public StockListDto(Integer id, Integer brand, Integer brandName, Integer type, String model, Integer number, Date createdAt, Date updatedAt) {
         this.id = id;
         this.brand = brand;
+        this.brandName = brandName;
         this.type = type;
         this.model = model;
         this.number = number;
@@ -90,5 +93,13 @@ public class StockListDto {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Integer getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(Integer brandName) {
+        this.brandName = brandName;
     }
 }

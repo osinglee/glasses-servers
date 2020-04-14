@@ -1,6 +1,6 @@
 package come.glasses.api.controller;
 
-import come.glasses.entity.User;
+import come.glasses.entity.UserEntity;
 import come.glasses.serviceImpl.AuthServiceImpl;
 import come.glasses.utils.controller.APIController;
 
@@ -12,7 +12,7 @@ import come.glasses.utils.controller.APIController;
 public class BaseController extends APIController {
     public BaseController(){}
 
-    final User currentUser(){
+    final UserEntity currentUser(){
         return AuthServiceImpl.getCurrentAuth();
     }
 }

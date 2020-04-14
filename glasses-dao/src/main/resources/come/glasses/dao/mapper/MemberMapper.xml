@@ -17,7 +17,7 @@
     delete from member
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="come.glasses.entity.User">
+    <insert id="insert" parameterType="come.glasses.entity.UserEntity">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -27,7 +27,7 @@
         #{phone,jdbcType=VARCHAR}, #{address,jdbcType=INTEGER},
         #{createId,jdbcType=VARCHAR})
     </insert>
-    <update id="updateByPrimaryKey" parameterType="come.glasses.entity.User">
+    <update id="updateByPrimaryKey" parameterType="come.glasses.entity.UserEntity">
     update member
     set name = #{name,jdbcType=VARCHAR},
       birthday = #{birthday,jdbcType=TINYINT},

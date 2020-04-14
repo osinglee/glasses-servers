@@ -1,7 +1,7 @@
 package come.glasses.serviceImpl;
 
 import come.glasses.dao.mapper.UserMapper;
-import come.glasses.entity.User;
+import come.glasses.entity.UserEntity;
 import come.glasses.entity.dto.UserList;
 import come.glasses.entity.dto.UserUpdate;
 import come.glasses.service.UserService;
@@ -26,12 +26,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Integer id) {
+    public UserEntity findById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public boolean updateUser(User input) {
+    public boolean updateUser(UserEntity input) {
         return userMapper.insert(input) > 0;
     }
 
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getList(UserList input) {
+    public List<UserEntity> getList(UserList input) {
         input.setOffset((input.getPage() - 1) * input.getPageSize());
         return userMapper.selectAll(input);
     }

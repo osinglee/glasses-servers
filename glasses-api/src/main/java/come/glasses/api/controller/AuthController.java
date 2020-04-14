@@ -1,6 +1,6 @@
 package come.glasses.api.controller;
 
-import come.glasses.entity.User;
+import come.glasses.entity.UserEntity;
 import come.glasses.entity.dto.ChangePassDto;
 import come.glasses.entity.dto.LoginDto;
 import come.glasses.service.AuthLoginService;
@@ -37,34 +37,34 @@ public class AuthController {
 
     @ApiOperation(value = "登录", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/login")
-    public JSONResult<User> addUser(@Valid @RequestBody LoginDto input) {
-        User user = authLoginService.login(input.getUser());
-        if (user == null) {
+    public JSONResult<UserEntity> addUser(@Valid @RequestBody LoginDto input) {
+        UserEntity userEntity = authLoginService.login(input.getUser());
+        if (userEntity == null) {
             return JSONResult.error("用户名不存在");
-        } else if (!JwtTokenUtil.isEqualsPassword(input.getPassword(), user.getPasswordEncrypted())) {
+        } else if (!JwtTokenUtil.isEqualsPassword(input.getPassword(), userEntity.getPasswordEncrypted())) {
             return JSONResult.error("密码错误");
         } else {
-            String token = JwtTokenUtil.generateToken(user.getId(), input.getPassword());
-            user.setCurrentToken(token);
-            user.setPasswordEncrypted("");
-            return JSONResult.success("登录成功", user);
+            String token = JwtTokenUtil.generateToken(userEntity.getId(), input.getPassword());
+            userEntity.setCurrentToken(token);
+            userEntity.setPasswordEncrypted("");
+            return JSONResult.success("登录成功", userEntity);
         }
     }
 
 
     @ApiOperation(value = "修改密码", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/change/pass")
-    public JSONResult<User> ChangePass(@Valid @RequestBody ChangePassDto input) {
-        User user = userService.findById(input.getId());
-        if (user == null) {
+    public JSONResult<UserEntity> ChangePass(@Valid @RequestBody ChangePassDto input) {
+        UserEntity userEntity = userService.findById(input.getId());
+        if (userEntity == null) {
             return JSONResult.error("用户不存在");
-        } else if (JwtTokenUtil.isEqualsPassword(input.getNewPass(), user.getPasswordEncrypted())) {
+        } else if (JwtTokenUtil.isEqualsPassword(input.getNewPass(), userEntity.getPasswordEncrypted())) {
             return JSONResult.error("新密码与旧密码相同");
-        } else if (!JwtTokenUtil.isEqualsPassword(input.getPass(), user.getPasswordEncrypted())) {
+        } else if (!JwtTokenUtil.isEqualsPassword(input.getPass(), userEntity.getPasswordEncrypted())) {
             return JSONResult.error("用户密码错误");
         } else {
-            user.setPasswordEncrypted(JwtTokenUtil.codeFromPassword(input.getNewPass()));
-            if (userService.updateUser(user)) {
+            userEntity.setPasswordEncrypted(JwtTokenUtil.codeFromPassword(input.getNewPass()));
+            if (userService.updateUser(userEntity)) {
                 return JSONResult.success("修改成功");
             }
             return JSONResult.error("修改失败");

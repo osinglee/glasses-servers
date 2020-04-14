@@ -1,6 +1,6 @@
 package come.glasses.serviceImpl.user;
 
-import come.glasses.entity.User;
+import come.glasses.entity.UserEntity;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -20,19 +20,19 @@ public class AuthenticateServiceImpl extends AbstractAuthenticationToken {
      * represented by this authentication object.
      */
 
-    private User User;
+    private final UserEntity userEntity;
 
     private SimpleGrantedAuthority authorities;
 
-    public AuthenticateServiceImpl(User authEntity) {
+    public AuthenticateServiceImpl(UserEntity authEntity) {
         super(null);
-        this.User = authEntity;
+        this.userEntity = authEntity;
 //        this.authorities = new SimpleGrantedAuthority(this.User != null ? this.User.getRoleId().toString() : null);
     }
 
     @Override
-    public User getPrincipal() {
-        return this.User;
+    public UserEntity getPrincipal() {
+        return this.userEntity;
     }
 
     @Override

@@ -1,16 +1,33 @@
 package come.glasses.entity;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class StockEntity {
     private Integer id;
 
+    /**
+     * 品牌id
+     */
+    @NotNull(message = "品牌不能为空")
     private Integer brand;
 
+    /**
+     * 1-镜架，2-镜片，3-隐形，4-药水，5-太阳镜，6-老花镜, 7-其他
+     */
+    @NotNull(message = "类型不能为空")
     private Integer type;
 
+    /**
+     * 型号
+     */
+    @NotNull(message = "型号不能为空")
     private String model;
 
+    /**
+     * 数量
+     */
+    @NotNull(message = "数量不能为空")
     private Integer number;
 
     private Date createdAt;

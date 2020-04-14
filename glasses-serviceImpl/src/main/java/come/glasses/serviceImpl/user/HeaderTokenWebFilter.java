@@ -2,7 +2,7 @@ package come.glasses.serviceImpl.user;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
-import come.glasses.entity.User;
+import come.glasses.entity.UserEntity;
 import come.glasses.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -20,7 +20,7 @@ import java.util.Date;
  */
 public class HeaderTokenWebFilter extends OncePerRequestFilter {
 
-    private UserService userService;
+    private final UserService userService;
 
     HeaderTokenWebFilter(UserService userService) {
         this.userService = userService;
@@ -49,13 +49,13 @@ public class HeaderTokenWebFilter extends OncePerRequestFilter {
             return;
         }
         // 通过数据库验证
-        User user = userService.findById(userId);
-        if (user == null) {
+        UserEntity userEntity = userService.findById(userId);
+        if (userEntity == null) {
             filterChain.doFilter(request, response);
             return;
         }
-        request.setAttribute("currentUser", user);
-        AuthenticateServiceImpl authentication = new AuthenticateServiceImpl(user);
+        request.setAttribute("currentUser", userEntity);
+        AuthenticateServiceImpl authentication = new AuthenticateServiceImpl(userEntity);
         authentication.setAuthenticated(true);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 

@@ -1,6 +1,5 @@
 package come.glasses.serviceImpl;
 
-import come.glasses.dao.mapper.BrandMapper;
 import come.glasses.dao.mapper.RoleMapper;
 import come.glasses.entity.RoleEntity;
 import come.glasses.service.RoleService;

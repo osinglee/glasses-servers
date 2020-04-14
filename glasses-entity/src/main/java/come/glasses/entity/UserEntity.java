@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
-public class User {
+public class UserEntity {
     private Integer id;
 
     @NotNull(message = "name不能为空")
@@ -34,7 +34,7 @@ public class User {
 
     private Date updatedAt;
 
-    public User() {
+    public UserEntity() {
         super();
     }
 

@@ -1,7 +1,7 @@
 package come.glasses.serviceImpl;
 
 import come.glasses.dao.mapper.UserMapper;
-import come.glasses.entity.User;
+import come.glasses.entity.UserEntity;
 import come.glasses.service.AuthLoginService;
 import come.glasses.serviceImpl.user.AuthenticateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class AuthServiceImpl implements AuthLoginService {
     }
 
     @Override
-    public User login(String phone) {
+    public UserEntity login(String phone) {
         return userMapper.selectByLoginStr(phone);
     }
 
@@ -34,7 +34,7 @@ public class AuthServiceImpl implements AuthLoginService {
      *
      * @return
      */
-    public static User getCurrentAuth() {
+    public static UserEntity getCurrentAuth() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AuthenticateServiceImpl)) {
             return null;

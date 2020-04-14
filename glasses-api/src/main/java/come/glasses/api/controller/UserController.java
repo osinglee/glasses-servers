@@ -1,6 +1,6 @@
 package come.glasses.api.controller;
 
-import come.glasses.entity.User;
+import come.glasses.entity.UserEntity;
 import come.glasses.entity.dto.DeleteDto;
 import come.glasses.entity.dto.UserList;
 import come.glasses.entity.dto.UserUpdate;
@@ -40,11 +40,11 @@ public class UserController extends BaseController {
 
     @ApiOperation(value = "根据ID获取用户", notes = "根据ID获取用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @RequestMapping(value = "/id", method = RequestMethod.GET)
-    public JSONResult<User> getUser(@Valid DeleteDto deleteDto) {
-        User user = currentUser();
+    public JSONResult<UserEntity> getUser(@Valid DeleteDto deleteDto) {
+        UserEntity user = currentUser();
         System.out.println(user.getName());
-        User userEntity = userService.findById(deleteDto.getId());
-        JSONResult<User> jsonResult = new JSONResult<>();
+        UserEntity userEntity = userService.findById(deleteDto.getId());
+        JSONResult<UserEntity> jsonResult = new JSONResult<>();
         if (userEntity != null) {
             jsonResult.setData(userEntity);
         } else {
@@ -56,9 +56,9 @@ public class UserController extends BaseController {
 
     @ApiOperation(value = "添加用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping(value = "/add")
-    public JSONResult addUser(@Valid @RequestBody User input) {
-        User user = authLoginService.login(input.getPhone());
-        if (user != null) {
+    public JSONResult addUser(@Valid @RequestBody UserEntity input) {
+        UserEntity userEntity = authLoginService.login(input.getPhone());
+        if (userEntity != null) {
             return JSONResult.error("改用户已存在");
         }
         input.setPasswordEncrypted(JwtTokenUtil.codeFromPassword(input.getPhone()));
@@ -89,8 +89,8 @@ public class UserController extends BaseController {
 
     @ApiOperation(value = "全部用户", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @GetMapping(value = "/list")
-    public JSONResult<List<User>> listUser(@Valid UserList input) {
-        JSONResult<List<User>> jsonResult = new JSONResult<>();
+    public JSONResult<List<UserEntity>> listUser(@Valid UserList input) {
+        JSONResult<List<UserEntity>> jsonResult = new JSONResult<>();
         jsonResult.setData(userService.getList(input));
         jsonResult.setTotal(userService.count(input));
         return jsonResult;

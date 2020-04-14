@@ -1,7 +1,5 @@
 package come.glasses.entity;
 
-import io.swagger.models.auth.In;
-
 import javax.validation.constraints.NotNull;
 
 /**

@@ -3,7 +3,7 @@ package come.glasses.utils;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
-import come.glasses.entity.User;
+import come.glasses.entity.UserEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -119,11 +119,11 @@ public class JwtTokenUtil {
      * 验证token是否还有效
      *
      * @param token 客户端传入的token
-     * @param user  从数据库中查询出来的用户信息
+     * @param userEntity  从数据库中查询出来的用户信息
      * @return token是否还有效
      */
-    public boolean validateToken(String token, User user) {
+    public boolean validateToken(String token, UserEntity userEntity) {
         Integer userId = getUserIdFormToken(token);
-        return userId.equals(user.getId()) && !isTokenExpired(token);
+        return userId.equals(userEntity.getId()) && !isTokenExpired(token);
     }
 }
