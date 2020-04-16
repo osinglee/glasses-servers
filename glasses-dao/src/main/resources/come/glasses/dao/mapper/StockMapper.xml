@@ -5,7 +5,7 @@
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="brand" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="brand_name" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="brand_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="model" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="number" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -52,19 +52,41 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, brand, type, model, number, created_at, updated_at
-    from stock
-    where id = #{id,jdbcType=INTEGER}
+    select s.id, s.brand, s.type, s.model, s.number, s.created_at, s.updated_at,
+    b.name as brand_name
+    from stock s
+    left join brand b on b.id = s.brand
+    where s.id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, brand, type, model, number, created_at, updated_at
-    from stock
+    select s.id, s.brand, s.type, s.model, s.number, s.created_at, s.updated_at,
+    b.name as brand_name
+    from stock s
+    left join brand b on b.id = s.brand
+    <where>
+      <if test="input.brand != null">
+        s.brand = #{input.brand}
+      </if>
+      <if test="input.type != null">
+        and s.type = #{input.type}
+      </if>
+      <if test="input.name != null">
+        and s.model LIKE concat('%', #{input.name},'%')
+      </if>
+    </where>
+    limit #{input.offset}, #{input.pageSize}
   </select>
   <select id="countOperationLogs" resultType="java.lang.Integer">
-    select count(*) from stock
+    select count(*) from stock s
     <where>
+      <if test="input.brand != null">
+        s.brand = #{input.brand}
+      </if>
+      <if test="input.type != null">
+        and s.type = #{input.type}
+      </if>
       <if test="input.name != null">
-        concat(name,phone) LIKE concat('%', #{input.name},'%')
+        and s.model LIKE concat('%', #{input.name},'%')
       </if>
     </where>
   </select>

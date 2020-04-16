@@ -12,7 +12,7 @@ public class StockListDto {
 
     private Integer brand;
 
-    private Integer brandName;
+    private String brandName;
 
     private Integer type;
 
@@ -24,7 +24,7 @@ public class StockListDto {
 
     private Date updatedAt;
 
-    public StockListDto(Integer id, Integer brand, Integer brandName, Integer type, String model, Integer number, Date createdAt, Date updatedAt) {
+    public StockListDto(Integer id, Integer brand, String brandName, Integer type, String model, Integer number, Date createdAt, Date updatedAt) {
         this.id = id;
         this.brand = brand;
         this.brandName = brandName;
@@ -95,11 +95,11 @@ public class StockListDto {
         this.updatedAt = updatedAt;
     }
 
-    public Integer getBrandName() {
+    public String getBrandName() {
         return brandName;
     }
 
-    public void setBrandName(Integer brandName) {
+    public void setBrandName(String brandName) {
         this.brandName = brandName;
     }
 }

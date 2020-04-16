@@ -40,7 +40,7 @@
     select m.*, u.name as created_name
     from member m
     left join user u on u.id = m.create_id
-    where u.id = #{id,jdbcType=INTEGER}
+    where m.id = #{id,jdbcType=INTEGER}
   </select>
     <select id="selectList" resultMap="BaseResultMap">
         select m.*, u.name as created_name

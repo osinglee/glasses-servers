@@ -1,7 +1,6 @@
 package come.glasses.dao.mapper;
 
 import come.glasses.entity.StockEntity;
-import come.glasses.entity.dto.UserList;
 import come.glasses.entity.dto.stock.StockInputDto;
 import come.glasses.entity.dto.stock.StockListDto;
 import org.apache.ibatis.annotations.Param;
