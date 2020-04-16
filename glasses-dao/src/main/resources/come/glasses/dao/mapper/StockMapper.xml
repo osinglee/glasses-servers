@@ -22,12 +22,25 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into stock (brand, type, model, 
-      number, created_at, updated_at
+      number
       )
     values (#{brand,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{model,jdbcType=VARCHAR}, 
-      #{number,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
+      #{number,jdbcType=INTEGER}
       )
   </insert>
+
+  <insert id="insertList" parameterType="java.util.List">
+    insert into stock (brand, type, model,
+    number)
+    values
+    <foreach collection="input" index="index" item="item" separator=",">
+      (
+      #{item.brand,jdbcType=INTEGER}, #{item.type,jdbcType=INTEGER},
+      #{item.model,jdbcType=VARCHAR}, #{item.number,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
+
   <update id="updateByPrimaryKey" parameterType="come.glasses.entity.StockEntity">
     update stock
     set brand = #{brand,jdbcType=INTEGER},
@@ -46,5 +59,13 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select id, brand, type, model, number, created_at, updated_at
     from stock
+  </select>
+  <select id="countOperationLogs" resultType="java.lang.Integer">
+    select count(*) from stock
+    <where>
+      <if test="input.name != null">
+        concat(name,phone) LIKE concat('%', #{input.name},'%')
+      </if>
+    </where>
   </select>
 </mapper>
